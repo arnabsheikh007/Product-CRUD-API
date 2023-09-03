@@ -1,6 +1,7 @@
 global using Product_CRUD_API.Models;
 global using Product_CRUD_API.Data;
 global using Product_CRUD_API.Services.ProductServices;
+using Product_CRUD_API.Services.AuthServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
