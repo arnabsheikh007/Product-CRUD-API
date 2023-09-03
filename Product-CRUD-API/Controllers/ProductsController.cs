@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Product_CRUD_API.Services.ProductServices;
 
@@ -7,6 +8,7 @@ namespace Product_CRUD_API.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -20,17 +22,6 @@ namespace Product_CRUD_API.Controllers
         public async Task<ActionResult<List<Product>>> GetAllProducts()
         {
             var result = await _productService.GetAllProducts();
-            return Ok(result);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetSingeleProduct(int id)
-        {
-            var result = await _productService.GetSingleProduct(id);
-            if (result is null)
-            {
-                return NotFound("Product Not Found");
-            }
             return Ok(result);
         }
 

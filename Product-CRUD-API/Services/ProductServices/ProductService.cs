@@ -58,16 +58,6 @@
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<Product?> GetSingleProduct(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product is null)
-            {
-                return null;
-            }
-            return product;
-        }
-
         public async Task<List<Product>?> UpdateProduct(int id, Product request)
         {
             var product = await _context.Products.FindAsync(id); 
